@@ -1,0 +1,29 @@
+{
+  "name": "specification-pattern-typescript",
+  "version": "1.0.0",
+  "description": "This is an example implementation of the Specification design pattern, using an underground admittance ticket as a candidate object to be validated.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radulupaescu/specification-pattern-typescript.git"
+  },
+  "keywords": [
+    "specification design pattern",
+    "design pattern",
+    "typescript",
+    "javascript",
+    "javascript design patterns"
+  ],
+  "author": "Radu Lupaescu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/radulupaescu/specification-pattern-typescript/issues"
+  },
+  "homepage": "https://github.com/radulupaescu/specification-pattern-typescript#readme",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}
