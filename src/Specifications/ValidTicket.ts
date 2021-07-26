@@ -7,7 +7,8 @@ export class ValidTicket extends Specification
 {
     isSatisfiedBy(ticket: Ticket): boolean
     {
-        return (new ExpiredTicket()).not().isSatisfiedBy(ticket)
-            && (new HasEntries()).isSatisfiedBy(ticket);
+        return (new HasEntries())
+            .andNot(new ExpiredTicket())
+            .isSatisfiedBy(ticket);
     }
 }

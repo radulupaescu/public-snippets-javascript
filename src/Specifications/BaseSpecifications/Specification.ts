@@ -1,7 +1,11 @@
 export interface ISpecification {
     and(other: ISpecification): ISpecification;
 
+    andNot(other: ISpecification): ISpecification;
+
     or(other: ISpecification): ISpecification;
+
+    orNot(other: ISpecification): ISpecification;
 
     not(): ISpecification;
 
@@ -13,8 +17,16 @@ export abstract class Specification implements ISpecification {
         return new AndSpecification(this, other);
     }
 
+    andNot(other: ISpecification): ISpecification {
+        return new AndNotSpecification(this, other);
+    }
+
     or(other: ISpecification): ISpecification {
         return new OrSpecification(this, other);
+    }
+
+    orNot(other: ISpecification): ISpecification {
+        return new OrNotSpecification(this, other);
     }
 
     not(): ISpecification {
@@ -60,6 +72,44 @@ export class OrSpecification extends Specification
     {
         return this.leftCondition.isSatisfiedBy(candidate) ||
             this.rightCondition.isSatisfiedBy(candidate);
+    }
+}
+
+export class AndNotSpecification extends Specification
+{
+    private leftCondition: ISpecification;
+
+    private rightCondition: ISpecification;
+
+    constructor(left: ISpecification, right: ISpecification)
+    {
+        super();
+        this.leftCondition = left;
+        this.rightCondition = right;
+    }
+
+    isSatisfiedBy(candidate: any): boolean
+    {
+        return this.leftCondition.isSatisfiedBy(candidate) && !this.rightCondition.isSatisfiedBy(candidate);
+    }
+}
+
+export class OrNotSpecification extends Specification
+{
+    private leftCondition: ISpecification;
+
+    private rightCondition: ISpecification;
+
+    constructor(left: ISpecification, right: ISpecification)
+    {
+        super();
+        this.leftCondition = left;
+        this.rightCondition = right;
+    }
+
+    isSatisfiedBy(candidate: any): boolean
+    {
+        return this.leftCondition.isSatisfiedBy(candidate) || !this.rightCondition.isSatisfiedBy(candidate);
     }
 }
 
